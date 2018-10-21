@@ -23,4 +23,10 @@ class BarTest extends \Codeception\Test\Unit
         $foo = 'Foo';
         $this->assertTrue($foo == 'Foo');
     }
+
+    public function testMe2()
+    {
+        $bar = 'Foo';
+        $this->assertEquals($bar, 'Bar');
+    }
 }
