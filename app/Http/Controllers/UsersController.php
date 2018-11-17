@@ -65,4 +65,10 @@ class UsersController extends Controller {
         return redirect()->route('users.show', $id);
     }
 
+
+    public function create()
+    {
+        return view('users.create');
+    }
+
 }
