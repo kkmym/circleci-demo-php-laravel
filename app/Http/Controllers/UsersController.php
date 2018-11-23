@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserStoreRequest;
 
 class UsersController extends Controller {
 
@@ -69,6 +70,18 @@ class UsersController extends Controller {
     public function create()
     {
         return view('users.create');
+    }
+
+    public function store(UserStoreRequest $request)
+    {
+        try {
+            $user = User::register($request->all());
+        } catch (\Exception $exp) {
+            $messages = new \Illuminate\Support\MessageBag;
+            $messages->add('', 'ユーザーの登録に失敗しました。');
+            return redirect()->route('users.create')->withErrors($messages);
+        }
+        return redirect()->route('users.show', $user->id);
     }
 
 }
