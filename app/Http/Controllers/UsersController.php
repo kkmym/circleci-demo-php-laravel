@@ -84,4 +84,9 @@ class UsersController extends Controller {
         return redirect()->route('users.show', $user->id);
     }
 
+    public function index(Request $request)
+    {
+        $users = $this->user->get(['id', 'email']);
+        return view('users.index', compact('users'));
+    }
 }
