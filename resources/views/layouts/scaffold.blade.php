@@ -24,7 +24,8 @@
             <div class="well">
                 @if (Auth::user())
                     Logged in as {{{ Auth::user()->email }}}.
-                    <a href="/auth/logout">Logout</a>
+                    <a href="javascript:void(0)" onclick="document.frmLogout.submit();return false;">Logout</a>
+                    <form action="/logout" method="post" name="frmLogout" style="display: none"></form>
                 @else
                     Not logged in
                 @endif

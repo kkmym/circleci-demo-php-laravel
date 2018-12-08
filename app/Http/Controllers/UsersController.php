@@ -75,7 +75,9 @@ class UsersController extends Controller {
     public function store(UserStoreRequest $request)
     {
         try {
-            $user = User::register($request->all());
+            $inputs = $request->all();
+            $inputs['password'] = bcrypt(array_get($inputs, 'password'));
+            $user = User::register($inputs);
         } catch (\Exception $exp) {
             $messages = new \Illuminate\Support\MessageBag;
             $messages->add('', 'ユーザーの登録に失敗しました。');
