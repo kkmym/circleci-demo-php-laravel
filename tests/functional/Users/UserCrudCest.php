@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * ユーザーCRUDテスト
+ */
+
 class UserCrudCest
 {
     public function createUser(FunctionalTester $I)
