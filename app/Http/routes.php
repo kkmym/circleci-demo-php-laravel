@@ -34,3 +34,6 @@ Route::resource('posts', 'PostsController');
 Route::resource('api/posts', 'Api\PostsController', ['as' => 'api']);
 Route::resource('users', 'UsersController', ['except' => ['destroy']]);
 Route::auth();
+
+//---------------------------------------------------------
+Route::get('q-and-a', 'QA\IndexController@index');

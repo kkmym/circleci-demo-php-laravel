@@ -13,7 +13,12 @@
     </div>
     
     {{var_dump(\App\Post::all()->toArray())}}
-    
-@endif
+    @endif
 
+    <div>
+        <ul>
+            <li><a href="/q-and-a">練習用アプリ：質問＆回答</a></li>
+        </ul>
+    </div>
+    
 @stop

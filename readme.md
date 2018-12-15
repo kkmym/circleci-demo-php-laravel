@@ -59,3 +59,14 @@ Demonstrates functional [testing of API](https://github.com/janhenkgerritsen/cod
 * partial json inclusion in response
 * GET/POST/PUT/DELETE requests
 * check changes inside database
+
+---
+
+## 自分で試しにアプリを追加してみる
+
+### 質問→回答 するアプリ
+
+#### 機能イメージ
+- トップページには、最近のＱ（N件）とそれに対する最新Ａをそれぞれ1件、表示。
+- 質問はAnonymousでも可。回答はログイン必須。
+- 質問に対して回答は複数つく。
