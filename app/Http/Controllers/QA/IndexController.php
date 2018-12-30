@@ -1,14 +1,18 @@
 <?php namespace App\Http\Controllers\QA;
 
 use App\Http\Controllers\Controller;
+use App\Models\QA\Question;
 
-class IndexController extends Controller {
+class IndexController extends Controller
+{
+    protected $model;
 
 	/**
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(Question $model)
 	{
+        $this->model = $model;
 	}
 
 	/**
@@ -16,7 +20,7 @@ class IndexController extends Controller {
 	 */
 	public function index()
 	{
-		return view('q-and-a/index');
+        $questions = $this->model->getQuestionsWithLatestAnswer();
+		return view('q-and-a/index')->with('questions', $questions);
 	}
-
 }

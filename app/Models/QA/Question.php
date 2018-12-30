@@ -23,15 +23,21 @@ FROM questions AS q
 LEFT OUTER JOIN (
     SELECT
         answer_id
-        ,question_id
         ,answer
         ,updated_at
+        ,question_id
     FROM answers
-    ORDER BY
-        answer_id DESC
-    LIMIT 1
+    WHERE answer_id IN (
+        SELECT
+            MAX(answer_id)
+        FROM answers
+        GROUP BY
+            question_id
+    )
 ) AS a
     ON q.question_id = a.question_id
+ORDER BY
+    a_updated_at DESC
 END_OF_SQL;
         $questions = \DB::select($SQL);
         return $questions;

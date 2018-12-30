@@ -37,3 +37,5 @@ Route::auth();
 
 //---------------------------------------------------------
 Route::get('q-and-a', 'QA\IndexController@index');
+Route::get('test', function() {
+});
