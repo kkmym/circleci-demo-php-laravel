@@ -15,7 +15,7 @@
                 <th scope="row">{{ $question->question_id}}</th>
                 <td>
                     <div>
-                        <div class="question_title">{{ $question->title }}</div>
+                        <div class="question_title"><strong>{{ $question->title }}</strong></div>
                         <div class="question_description">{{ $question->description }}</div>
                     </div>
                     <div><small>{{ $question->q_updated_at }}</small></div>

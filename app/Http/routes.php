@@ -36,6 +36,12 @@ Route::resource('users', 'UsersController', ['except' => ['destroy']]);
 Route::auth();
 
 //---------------------------------------------------------
-Route::get('q-and-a', 'QA\IndexController@index');
 Route::get('test', function() {
+});
+
+Route::prefix('q-and-a')->group(function() {
+    Route::get('', 'QA\IndexController@index');
+    
+    Route::get('questions/create', 'QA\QuestionsController@create');
+    Route::post('questions', 'QA\QuestionsController@store');
 });

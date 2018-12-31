@@ -23,11 +23,12 @@
 
             <div class="well">
                 @if (Auth::user())
-                    Logged in as {{{ Auth::user()->email }}}.
-                    <a href="javascript:void(0)" onclick="document.frmLogout.submit();return false;">Logout</a>
+                    {{{ Auth::user()->email }}}としてログイン中
+                    <a href="javascript:void(0)" onclick="document.frmLogout.submit();return false;" class="btn btn-default">ログアウト</a>
                     <form action="/logout" method="post" name="frmLogout" style="display: none"></form>
                 @else
-                    Not logged in
+                    <div>ログインしていません</div>
+                    <a href="/login" class="btn btn-default">ログイン</a> または <a href="/users/create" class="btn btn-primary">会員登録</a>
                 @endif
             </div>
         </div>
