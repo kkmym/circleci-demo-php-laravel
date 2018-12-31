@@ -11,11 +11,11 @@ $I->fillField('password', 'password');
 $I->click('button[type=submit]');
 
 $I->amOnPage('/users/1');
-$I->see('Logged in as johndoe@example.com');
+$I->see('johndoe@example.comとしてログイン中');
 
 $I->click('Edit');
 $I->fillField('Email', 'john@doe.com');
 $I->click('Update');
 
 $I->seeCurrentUrlEquals('/users/1');
-$I->see('Logged in as john@doe.com');
+$I->see('john@doe.comとしてログイン中');

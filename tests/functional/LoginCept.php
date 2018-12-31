@@ -17,4 +17,4 @@ $I->click('button[type=submit]');
 $I->seeCurrentUrlEquals('');
 $I->amOnPage('/posts');
 $I->seeAuthentication();
-$I->see('Logged in as john@doe.com');
+$I->see('john@doe.comとしてログイン中');
