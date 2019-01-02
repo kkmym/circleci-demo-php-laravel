@@ -70,3 +70,4 @@ Demonstrates functional [testing of API](https://github.com/janhenkgerritsen/cod
 - トップページには、最近のＱ（N件）とそれに対する最新Ａをそれぞれ1件、表示。
 - 質問はAnonymousでも可。回答はログイン必須。
 - 質問に対して回答は複数つく。
+- 質問は、回答0件なら変更可能。回答が1つでもついたら、追記のみ可能。

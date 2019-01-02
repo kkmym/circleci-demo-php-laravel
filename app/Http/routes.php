@@ -40,8 +40,14 @@ Route::get('test', function() {
 });
 
 Route::prefix('q-and-a')->group(function() {
+    // QAトップ
     Route::get('', 'QA\IndexController@index');
-    
+    // 質問投稿フォーム ※ログイン必要だが、画面にその旨表示したいので、URLはイキとしておく
     Route::get('questions/create', 'QA\QuestionsController@create');
-    Route::post('questions', 'QA\QuestionsController@store');
+    Route::get('questions/{question_id}', 'QA\QuestionsController@show');
+
+    // 質問投稿 登録処理
+    Route::middleware(['auth'])->group(function() {
+        Route::post('questions', 'QA\QuestionsController@store');
+    });
 });

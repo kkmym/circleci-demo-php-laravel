@@ -13,10 +13,10 @@
     {{ csrf_field() }}
 
     <label for="title">質問 - タイトル</label>
-    <input name="title" id="title" type="text" placeholder="質問のタイトルを入力してください">
+    <input name="title" id="title" type="text" placeholder="質問のタイトルを入力してください" value="{{ old('title') }}">
 
-    <label for="question">質問 - 内容</label>
-    <textarea name="question" id="question" placeholder="質問の内容を入力してください" rows="3"></textarea>
+    <label for="description">質問 - 内容</label>
+    <textarea name="description" id="description" placeholder="質問の内容を入力してください" rows="3">{{ old('description') }}</textarea>
 
     <div>
         <button type="submit" class="btn btn-default">投稿する</button>
