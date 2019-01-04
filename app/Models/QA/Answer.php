@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
-    protected $guarded = ['answer_id', 'question_id', 'answer'];
+    protected $guarded = ['answer_id'];
     protected $primaryKey = 'answer_id';
     //
 }

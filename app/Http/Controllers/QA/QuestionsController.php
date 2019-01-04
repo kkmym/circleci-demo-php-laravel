@@ -3,7 +3,6 @@
 use App\Http\Controllers\Controller;
 use App\Http\Requests\QA\QuestionStoreRequest;
 use App\Models\QA\Question;
-use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
 {

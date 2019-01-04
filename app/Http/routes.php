@@ -50,4 +50,8 @@ Route::prefix('q-and-a')->group(function() {
     Route::middleware(['auth'])->group(function() {
         Route::post('questions', 'QA\QuestionsController@store');
     });
+
+    // 回答
+    Route::get('questions/{question_id}/answers/create', 'QA\AnswersController@create');
+    Route::post('questions/{question_id}/answers', 'QA\AnswersController@store');
 });

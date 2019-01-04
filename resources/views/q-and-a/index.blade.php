@@ -19,6 +19,7 @@
                         <div class="question_description">{{ $question->description }}</div>
                     </div>
                     <div><small>{{ $question->q_updated_at }}</small></div>
+                    <div><a href="{!! '/q-and-a/questions/' .  $question->question_id !!}">内容を見る</a></div>
                 </td>
                 <td><div>{{ $question->answer }}</div><div><small>{{ $question->a_updated_at }}</small><small>（他 6件）</small></div</td>
                 <td><a href="{!! '/q-and-a/questions/' .  $question->question_id  . '/answers/create' !!}">この質問に回答する</a></td>
