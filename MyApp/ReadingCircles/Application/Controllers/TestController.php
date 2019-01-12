@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace MyApp\Http\Controllers;
+namespace MyApp\ReadingCircles\Application\Controllers;
 
 use App\Http\Controllers\Controller;
 
