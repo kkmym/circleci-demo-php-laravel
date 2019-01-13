@@ -8,7 +8,7 @@ class MemberLoginId
 
     public function __construct(string $loginId)
     {
-        // @TODO ログインIDとしての妥当性チェック
+        // @todo ログインIDとしての妥当性チェック
         $this->loginId = $loginId;
     }
 

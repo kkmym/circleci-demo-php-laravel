@@ -11,27 +11,21 @@ class Circle
 
     public function __construct(Book $readingBook, array $organizers, array $urls = null)
     {
-        //====================================================================
         // $organizers が Member の配列であることを確認
-        // 1) array_map
-        // 2) Collection
-
         $isMemberInstance = function($instance) {
             return ($instance instanceof Member);
         };
-        // 1)
-        /*
         if (in_array(false, array_map($isMemberInstance, $organizers))) {
             throw new \Exception('Memberのみ受付');
         }
-        */
 
-        // 2)
-        $c = collect($organizers);
-        if ($c->every($isMemberInstance) == false) {
-            throw new \Exception('Memberのみ受付２');
+        // $urls が Url の配列であることを確認
+        $isUrlInstance = function($instance) {
+            return ($instance instanceof Url);
+        };
+        if (in_array(false, array_map($isUrlInstance, $urls))) {
+            throw new \Exception('Urlのみ受付');
         }
-        //====================================================================
 
         $this->readingBook = $readingBook;
         $this->organizers = $organizers;

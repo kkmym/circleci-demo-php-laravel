@@ -14,6 +14,7 @@ class Url
 
     public function __construct(string $url)
     {
+        // @todo URLとしての妥当性チェック
         $this->url = $url;
     }
 
