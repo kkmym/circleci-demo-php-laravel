@@ -8,6 +8,7 @@ class BookIsbn
 
     public function __construct(string $isbn)
     {
+        // @TODO ISBNとしての妥当性チェック
         $this->isbn = $isbn;
     }
 

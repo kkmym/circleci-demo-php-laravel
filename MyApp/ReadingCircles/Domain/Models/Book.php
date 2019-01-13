@@ -30,7 +30,7 @@ class Book
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function id()
     {
