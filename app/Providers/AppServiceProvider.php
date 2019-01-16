@@ -3,6 +3,7 @@
 use App\Validation\CustomValidator;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use MyApp\ReadingCircles\Application\Auth\RCGuard;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new CustomValidator($translator, $data, $rules, $messages);
+        });
+        $this->app['auth']->extend('rcmember_guard', function($app, $name, array $config) {
+            return new RCGuard();
         });
     }
 

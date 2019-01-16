@@ -36,8 +36,6 @@ Route::resource('users', 'UsersController', ['except' => ['destroy']]);
 Route::auth();
 
 //---------------------------------------------------------
-Route::get('test', function() {
-});
 
 Route::prefix('q-and-a')->group(function() {
     // QAトップ
