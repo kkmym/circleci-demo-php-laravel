@@ -40,6 +40,9 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'rcmember' => [
+            'driver' => 'rcmember_guard',
+         ]
     ],
     /*
     |--------------------------------------------------------------------------

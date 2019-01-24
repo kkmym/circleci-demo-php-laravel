@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 class RCGuard implements Guard
 {
+    protected $rcMember;
+
     /**
      * Determine if the current user is authenticated.
      *
@@ -14,7 +16,7 @@ class RCGuard implements Guard
      */
     public function check()
     {
-        return true;
+        return !is_null($this->user());
     }
 
     /**
@@ -24,7 +26,7 @@ class RCGuard implements Guard
      */
     public function guest()
     {
-
+        return !$this->check();
     }
 
     /**
@@ -34,7 +36,29 @@ class RCGuard implements Guard
      */
     public function user()
     {
+        // ユーザー情報を持っていたら、それを返す
+        if (!is_null($this->rcMember)) {
+            return $this->rcMember;
+        }
 
+        // キャッシュ上の情報から、ユーザー情報を復元
+        $this->rcMember = new RCMember();
+        return $this->rcMember;
+
+        // 復元できかなった場合は、Cookieの情報からDBのデータを取得しユーザー情報を作成
+    }
+
+    /**
+     * @return RCMember|null
+     */
+    public function rcMember()
+    {
+        $user = $this->user();
+        if (is_null($user) || !($user instanceof RCMember)) {
+            return null;
+        }
+
+        return $user;
     }
 
     /**
@@ -44,7 +68,7 @@ class RCGuard implements Guard
      */
     public function id()
     {
-
+        return $this->user()->getAuthIdentifier();
     }
 
     /**
@@ -55,7 +79,7 @@ class RCGuard implements Guard
      */
     public function validate(array $credentials = [])
     {
-
+        return true;
     }
 
     /**
