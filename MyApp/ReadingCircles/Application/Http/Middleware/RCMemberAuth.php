@@ -1,6 +1,6 @@
 <?php
 
-namespace MyApp\ReadingCircles\Application\Middleware;
+namespace MyApp\ReadingCircles\Application\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Closure;

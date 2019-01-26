@@ -15,7 +15,7 @@ class RCMemberLogin
         $this->memberRepo = $memberRepo;
     }
 
-    public function login(string $loginId)
+    public function authLoginCredential(string $loginId)
     {
         $memberLoginId = new MemberLoginId($loginId);
 

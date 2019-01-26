@@ -1,6 +1,6 @@
 <?php
 
-namespace MyApp\ReadingCircles\Application\Controllers;
+namespace MyApp\ReadingCircles\Application\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use MyApp\ReadingCircles\Application\UseCases\RCMemberLogin;
