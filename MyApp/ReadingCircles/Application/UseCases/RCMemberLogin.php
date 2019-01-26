@@ -3,6 +3,7 @@
 namespace MyApp\ReadingCircles\Application\UseCases;
 
 
+use Auth;
 use MyApp\ReadingCircles\Domain\Models\MemberLoginId;
 use MyApp\ReadingCircles\Domain\Models\MemberRepositoryInterface;
 
@@ -15,10 +16,11 @@ class RCMemberLogin
         $this->memberRepo = $memberRepo;
     }
 
-    public function authLoginCredential(string $loginId)
+    public function attemptLogin(string $loginId)
     {
-        $memberLoginId = new MemberLoginId($loginId);
-
+        // ログイン処理
+        Auth::guard('rcmember')->attempt(['loginId' => $loginId]);
+        return true;
     }
 
 }

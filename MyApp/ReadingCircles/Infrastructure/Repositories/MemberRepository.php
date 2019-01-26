@@ -13,7 +13,7 @@ class MemberRepository implements MemberRepositoryInterface
 
     }
 
-    public function queryByLoginId(MemberLoginId $loginId)
+    public function queryByLoginId(MemberLoginId $loginId) : Member
     {
 
     }

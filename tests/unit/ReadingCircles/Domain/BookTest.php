@@ -1,7 +1,5 @@
 <?php
 
-namespace ReadingCircles;
-
 use MyApp\ReadingCircles\Domain\Models\Book;
 use MyApp\ReadingCircles\Domain\Models\BookId;
 use MyApp\ReadingCircles\Domain\Models\BookIsbn;

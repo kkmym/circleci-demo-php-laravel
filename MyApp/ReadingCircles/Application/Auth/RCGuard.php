@@ -92,4 +92,12 @@ class RCGuard implements Guard
     {
 
     }
+
+    /**
+     * 
+     */
+    public function attempt(array $credentials = [])
+    {
+
+    }
 }
