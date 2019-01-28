@@ -5,9 +5,21 @@ namespace MyApp\ReadingCircles\Application\Auth;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Authenticatable;
 
+use MyApp\ReadingCircles\Domain\Models\MemberRepositoryInterface;
+
+use MyApp\ReadingCircles\Domain\Models\Member;
+use MyApp\ReadingCircles\Domain\Models\MemberId;
+use MyApp\ReadingCircles\Domain\Models\MemberLoginId;
+
 class RCGuard implements Guard
 {
     protected $rcMember;
+    protected $memberRepo;
+
+    public function __construct(MemberRepositoryInterface $memberRepo)
+    {
+        $this->memberRepo = $memberRepo;
+    }
 
     /**
      * Determine if the current user is authenticated.
@@ -41,20 +53,21 @@ class RCGuard implements Guard
             return $this->rcMember;
         }
 
-        // キャッシュ上の情報から、ユーザー情報を復元
-        $this->rcMember = new RCMember();
+        // セッション上の情報から、ユーザー情報を復元
+        // @todo とりあえずの処理↓
+        $this->rcMember = $this->memberRepo->queryByLoginId(new MemberLoginId('loginId'));
         return $this->rcMember;
 
         // 復元できかなった場合は、Cookieの情報からDBのデータを取得しユーザー情報を作成
     }
 
     /**
-     * @return RCMember|null
+     * @return RCAuthedMember|null
      */
     public function rcMember()
     {
         $user = $this->user();
-        if (is_null($user) || !($user instanceof RCMember)) {
+        if (is_null($user) || !($user instanceof RCAuthedMember)) {
             return null;
         }
 
@@ -90,14 +103,6 @@ class RCGuard implements Guard
      */
     public function setUser(Authenticatable $user)
     {
-
-    }
-
-    /**
-     * 
-     */
-    public function attempt(array $credentials = [])
-    {
-
+        $this->rcMember = $user;
     }
 }

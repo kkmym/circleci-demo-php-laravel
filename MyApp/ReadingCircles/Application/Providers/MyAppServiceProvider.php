@@ -12,7 +12,7 @@ class MyAppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app['auth']->extend('rcmember_guard', function($app, $name, array $config) {
-            return new RCGuard();
+            return $this->app->make(RCGuard::class);
         });
     }
 

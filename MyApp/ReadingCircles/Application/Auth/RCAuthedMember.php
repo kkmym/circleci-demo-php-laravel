@@ -3,14 +3,15 @@
 namespace MyApp\ReadingCircles\Application\Auth;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use MyApp\ReadingCircles\Domain\Models\Member;
 
-class RCMember implements Authenticatable
+class RCAuthedMember implements Authenticatable
 {
     protected $memberId;
 
-    public function __construct()
+    public function __construct(Member $member)
     {
-        $this->memberId = 1;
+        $this->memberId = $member->id();
     }
 
     /**

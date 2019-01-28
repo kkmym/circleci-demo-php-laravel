@@ -1,8 +1,8 @@
 <?php
 
-use MyApp\ReadingCircles\Infrastructure\DAOs\Member;
+use MyApp\ReadingCircles\Infrastructure\DAOs\MemberDAO;
 
-class UserTest extends \Codeception\TestCase\Test
+class MemberDAOTest extends \Codeception\TestCase\Test
 {
     /**
      * @var \UnitTester
@@ -11,16 +11,11 @@ class UserTest extends \Codeception\TestCase\Test
 
     public function testCreate()
     {
-        /*
-            $table->string('login_id');
-            $table->string('name');
-            $table->string('display_name');
-        */
         $loginId = 'testuser';
         $name = 'テストユーザー';
         $displayName = '表示用のユーザー名';
 
-        Member::create([
+        MemberDAO::create([
             'login_id' => $loginId,
             'name' => $name,
             'display_name' => $displayName,
