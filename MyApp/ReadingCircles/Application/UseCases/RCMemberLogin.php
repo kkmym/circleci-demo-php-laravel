@@ -23,8 +23,11 @@ class RCMemberLogin
     {
         // DBへの照合
         $member = $this->memberRepo->queryByLoginId(new MemberLoginId($loginId));
-
+        if (!$member) {
+            return false;
+        }
         // セッションにデータをセット
+
 
         // Guardにユーザー情報をセット
         Auth::guard('rcmember')->setUser(new RCAuthedMember($member));

@@ -12,4 +12,12 @@ class TestController extends Controller
         $loginUserCase = \App::make(RCMemberLogin::class);
         return 'Hello.';
     }
+
+    public function sessionTest()
+    {
+        $val = session('test', 'noval');
+        session(['test' => date('YmdHis')]);
+
+        echo $val;
+    }
 }

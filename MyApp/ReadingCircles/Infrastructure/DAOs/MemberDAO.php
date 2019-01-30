@@ -11,4 +11,9 @@ class MemberDAO extends Model
     protected $guarded = [
         'member_id',
     ];
+
+    public function queryByLoginId($loginId)
+    {
+        return $this->where('login_id', $loginId)->first();
+    }
 }
