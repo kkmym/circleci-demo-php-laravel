@@ -9,6 +9,9 @@ use MyApp\ReadingCircles\Application\Http\Requests\LoginAuthRequest;
 
 class LoginController
 {
+    /**
+     * @var RCMemberLogin
+     */
     protected $memberLogin;
 
     public function __construct(RCMemberLogin $memberLogin)
@@ -33,7 +36,7 @@ class LoginController
 
         // ログイン処理
         $loginId = $request->get('loginId');
-        $result = $this->memberLogin->attemptLogin($loginId);
+        $result = $this->memberLogin->loginByFormInput($loginId);
         if ($result) {
             return redirect('reading-circles/test');
         } else {

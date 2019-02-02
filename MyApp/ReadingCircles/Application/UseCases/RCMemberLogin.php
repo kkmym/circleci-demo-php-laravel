@@ -19,7 +19,7 @@ class RCMemberLogin
         $this->memberRepo = $memberRepo;
     }
 
-    public function attemptLogin(string $loginId)
+    public function loginByFormInput(string $loginId)
     {
         // DBへの照合
         $member = $this->memberRepo->queryByLoginId(new MemberLoginId($loginId));
@@ -46,7 +46,8 @@ class RCMemberLogin
         $loginIdInCookie = \Cookie::get('loginId');
 
         // 合致しなければ、ログイン失敗させる
-        if ($loginId != $loginIdInCookie) {
+        if (empty($loginId) || $loginId != $loginIdInCookie) {
+            throw new \Exception('session:' . $loginId . ' cookie:' . $loginIdInCookie);
             return false;
         }
 
