@@ -10,15 +10,20 @@ use MyApp\ReadingCircles\Domain\Models\MemberRepositoryInterface;
 use MyApp\ReadingCircles\Domain\Models\Member;
 use MyApp\ReadingCircles\Domain\Models\MemberId;
 use MyApp\ReadingCircles\Domain\Models\MemberLoginId;
+use MyApp\ReadingCircles\Application\UseCases\RCMemberLogin;
 
 class RCGuard implements Guard
 {
     protected $rcMember;
-    protected $memberRepo;
 
-    public function __construct(MemberRepositoryInterface $memberRepo)
+    /**
+     * @var RCMemberLogin
+     */
+    protected $memberLogin;
+
+    public function __construct(RCMemberLogin $memberLogin)
     {
-        $this->memberRepo = $memberRepo;
+        $this->memberLogin = $memberLogin;
     }
 
     /**
@@ -54,23 +59,13 @@ class RCGuard implements Guard
         }
 
         // セッション上の情報から、ユーザー情報を復元
-        $loginId = session('loginId');
-        if ($loginId != null) {
-            \Cookie::queue('loginId', $loginId, 1440);
-            $serialized = session($loginId);
-            $member = unserialize($serialized);
-            $rcMember = new RCAuthedMember($member);
-            $this->setUser($rcMember);
-            return $rcMember;
+        if ($this->memberLogin->loginBySessionInfo()) {
+            return $this->rcMember;
         }
 
         // 復元できかなった場合は、Cookieの情報からDBのデータを取得しユーザー情報を作成
-        $loginIdInCookie = \Cookie::get('loginId');
-        if ($loginIdInCookie != null) {
-            $member = $this->memberRepo->queryByLoginId(new MemberLoginId($loginIdInCookie));
-            $rcMember = new RCAuthedMember($member);
-            $this->setUser($rcMember);
-            return $rcMember;
+        if ($this->memberLogin->loginByCookieInfo()) {
+            return $this->rcMember;
         }
 
         return null;
