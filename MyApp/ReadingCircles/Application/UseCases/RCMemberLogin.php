@@ -26,8 +26,11 @@ class RCMemberLogin
         if (!$member) {
             return false;
         }
-        // セッションにデータをセット
 
+        // セッションにデータをセット
+        session(['loginId' => $loginId, $loginId => serialize($member)]);
+        // cookieにもデータをセット
+        \Cookie::queue('loginId', $loginId, 1440);
 
         // Guardにユーザー情報をセット
         Auth::guard('rcmember')->setUser(new RCAuthedMember($member));

@@ -54,11 +54,26 @@ class RCGuard implements Guard
         }
 
         // セッション上の情報から、ユーザー情報を復元
-        // @todo とりあえずの処理↓
-        $this->rcMember = $this->memberRepo->queryByLoginId(new MemberLoginId('aaa'));
-        return $this->rcMember;
+        $loginId = session('loginId');
+        if ($loginId != null) {
+            \Cookie::queue('loginId', $loginId, 1440);
+            $serialized = session($loginId);
+            $member = unserialize($serialized);
+            $rcMember = new RCAuthedMember($member);
+            $this->setUser($rcMember);
+            return $rcMember;
+        }
 
         // 復元できかなった場合は、Cookieの情報からDBのデータを取得しユーザー情報を作成
+        $loginIdInCookie = \Cookie::get('loginId');
+        if ($loginIdInCookie != null) {
+            $member = $this->memberRepo->queryByLoginId(new MemberLoginId($loginIdInCookie));
+            $rcMember = new RCAuthedMember($member);
+            $this->setUser($rcMember);
+            return $rcMember;
+        }
+
+        return null;
     }
 
     /**

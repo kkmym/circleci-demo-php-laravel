@@ -11,7 +11,7 @@ class RCMemberAuth
     public function handle(Request $request, Closure $next)
     {
         if (Auth::guard('rcmember')->check() == false) {
-            return redirect('/?login=false');
+            return redirect('/reading-circles/login');
         }
         return $next($request);
     }

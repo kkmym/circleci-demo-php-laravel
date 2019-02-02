@@ -8,10 +8,11 @@ use MyApp\ReadingCircles\Domain\Models\Member;
 class RCAuthedMember implements Authenticatable
 {
     protected $memberId;
+    protected $member = null;
 
     public function __construct(Member $member)
     {
-        $this->memberId = $member->id();
+        $this->member = $member;
     }
 
     /**
@@ -31,7 +32,10 @@ class RCAuthedMember implements Authenticatable
      */
     public function getAuthIdentifier()
     {
-        return $this->memberId;
+        if (!$this->member) {
+            return null;
+        }
+        return $this->member->id();
     }
 
     /**
