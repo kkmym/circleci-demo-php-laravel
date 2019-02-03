@@ -4,6 +4,9 @@ namespace MyApp\ReadingCircles\Domain\Models;
 
 class BookIsbn
 {
+    /**
+     * @var string
+     */
     protected $isbn;
 
     public function __construct(string $isbn)
@@ -12,7 +15,7 @@ class BookIsbn
         $this->isbn = $isbn;
     }
 
-    public function value()
+    public function value() : string
     {
         return $this->isbn;
     }
