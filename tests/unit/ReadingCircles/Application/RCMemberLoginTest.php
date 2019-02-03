@@ -67,4 +67,17 @@ class RCMemberLoginTest extends \Codeception\Test\Unit
         $result = $memberLogin->loginBySessionInfo();
         $this->assertTrue($result);
     }
+
+    public function testLoginByCookieInfo()
+    {
+        // DBにテストデータを入れる
+        $this->tester->haveRecord('members', $this->initMemberData);
+
+        // Cookie::get() を _before() で Mock済
+
+        // ログイン処理が成功するか検証
+        $memberLogin = \App::make(RCMemberLogin::class);
+        $result = $memberLogin->loginByCookieInfo();
+        $this->assertTrue($result);
+    }
 }
