@@ -38,7 +38,7 @@ class LoginController
         $loginId = $request->get('loginId');
         $result = $this->memberLogin->loginByFormInput($loginId);
         if ($result) {
-            return redirect('reading-circles/test');
+            return redirect('reading-circles/');
         } else {
             return 'ログイン失敗';
         }

@@ -73,7 +73,8 @@ class RCMemberLoginTest extends \Codeception\Test\Unit
         // DBにテストデータを入れる
         $this->tester->haveRecord('members', $this->initMemberData);
 
-        // Cookie::get() を _before() で Mock済
+        // Cookieにデータをセット
+        // Cookie::get() を _before() で Mock済なのでとくにここでは処理なし
 
         // ログイン処理が成功するか検証
         $memberLogin = \App::make(RCMemberLogin::class);
