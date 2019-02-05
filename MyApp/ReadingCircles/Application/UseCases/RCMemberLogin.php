@@ -47,7 +47,6 @@ class RCMemberLogin
 
         // 合致しなければ、ログイン失敗させる
         if (empty($loginId) || $loginId != $loginIdInCookie) {
-            throw new \Exception('session:' . $loginId . ' cookie:' . $loginIdInCookie);
             return false;
         }
 

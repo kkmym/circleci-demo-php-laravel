@@ -29,6 +29,7 @@ class Kernel extends HttpKernel {
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
 		// ReadingCircles Member のログイン認証
 		'auth.rcmember' => 'MyApp\ReadingCircles\Application\Http\Middleware\RCMemberAuth',
+		'auth.not_rcmember' => 'MyApp\ReadingCircles\Application\Http\Middleware\RCMemberUnauth',
 	];
 
 }
