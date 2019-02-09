@@ -12,13 +12,13 @@ class BookDAO extends Model
         'book_id',
     ];
 
-    public function queryById(int $id)
+    public function findById(int $id)
     {
         return $this->where('book_id', $id)->first();
     }
 
-    public function queryByIsbn(string $isbn)
+    public function findByIsbn(string $isbn)
     {
-        return $this->where('book_isbn', $isbn)->first();
+        return $this->where('isbn', $isbn)->first();
     }
 }

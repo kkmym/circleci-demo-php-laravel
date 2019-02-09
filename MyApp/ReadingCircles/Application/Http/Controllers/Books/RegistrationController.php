@@ -13,11 +13,6 @@ class RegistrationController extends Controller
 
     public function action()
     {
-        return redirect('reading-circles/books/registration/done');
-    }
-
-    public function done()
-    {
-        return 'done';
+        return redirect('reading-circles/books');
     }
 }

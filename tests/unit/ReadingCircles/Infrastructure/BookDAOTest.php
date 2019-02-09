@@ -1,6 +1,7 @@
 <?php
 
 use MyApp\ReadingCircles\Infrastructure\DAOs\BookDAO;
+use MyApp\ReadingCircles\Domain\Models\BookIsbn;
 
 class BookDAOTest extends \Codeception\TestCase\Test
 {
@@ -9,15 +10,44 @@ class BookDAOTest extends \Codeception\TestCase\Test
      */
     protected $tester;
 
+    protected $isbn = '9784274217623';
+    protected $title = 'エクストリームプログラミング';
+
     public function testCreate()
     {
-        $isbn = '9784274217623';
-        $title = 'エクストリームプログラミング';
         BookDAO::create([
-            'isbn' => $isbn,
-            'title' => $title,
+            'isbn' => $this->isbn,
+            'title' => $this->title,
         ]);
 
-       $this->tester->seeRecord('books', ['isbn' => $isbn]);
-     }
+       $this->tester->seeRecord('books', ['isbn' => $this->isbn]);
+    }
+
+    public function testFindByBookIsbn()
+    {
+        $dao = new BookDAO();
+
+        $dao->fill([
+            'isbn' => $this->isbn,
+            'title' => $this->title,
+        ]);
+        $dao->save();
+
+        $book = $dao->findByIsbn($this->isbn);
+        $this->assertEquals($book->isbn, $this->isbn);
+    }
+
+    public function testFindByBookIsbnFail()
+    {
+        $dao = new BookDAO();
+
+        $dao->fill([
+            'isbn' => $this->isbn,
+            'title' => $this->title,
+        ]);
+        $dao->save();
+
+        $book = $dao->findByIsbn('1234');
+        $this->assertEmpty($book);
+    }
 }

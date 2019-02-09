@@ -22,9 +22,9 @@ class Book
     /**
      * 
      */
-    public function __construct(BookId $bookId, BookIsbn $bookIsbn, string $title)
+    public function __construct(?BookId $bookId, BookIsbn $bookIsbn, string $title)
     {
-        $this->bookId = $bookId;
+        $this->bookId = is_null($bookId) ? new BookId() : $bookId;
         $this->bookIsbn = $bookIsbn;
         $this->title = $title;
     }

@@ -36,7 +36,6 @@ class LoginCest
         $I->fillField(['name' => 'loginId'], 'xxx');
         $I->click('ログイン');
 
-        // $I->seeCurrentUrlEquals('/reading-circles/');
         $I->seeCurrentUrlEquals('/reading-circles/auth');
         $I->see('ログイン失敗');
     }
