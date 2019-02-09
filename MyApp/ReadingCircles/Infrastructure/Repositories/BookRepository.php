@@ -37,7 +37,12 @@ class BookRepository implements BookRepositoryInterface
 
     public function findByBookId(BookId $bookId) : ?Book
     {
+        $data = $this->bookDao->findById($bookId->value());
+        if (!$data) {
+            return null;
+        }
 
+        return $this->_stdClassToBook($data);
     }
 
     public function findByBookIsbn(BookIsbn $bookIsbn) : ?Book

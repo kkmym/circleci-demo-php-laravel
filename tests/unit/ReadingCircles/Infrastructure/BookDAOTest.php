@@ -50,4 +50,20 @@ class BookDAOTest extends \Codeception\TestCase\Test
         $book = $dao->findByIsbn('1234');
         $this->assertEmpty($book);
     }
+
+    public function testFindByBookId()
+    {
+        $dao = new BookDAO();
+
+        $dao->fill([
+            'isbn' => $this->isbn,
+            'title' => $this->title,
+        ]);
+        $dao->save();
+
+        $newId = $dao->book_id;
+
+        $book = $dao->findById($newId);
+        $this->assertEquals($book->isbn, $this->isbn);
+    }
 }
