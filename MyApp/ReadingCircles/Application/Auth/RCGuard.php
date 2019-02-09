@@ -115,4 +115,10 @@ class RCGuard implements Guard
     {
         $this->rcMember = $user;
     }
+
+    public function attempt(array $credentials)
+    {
+        $login = \App::make(RCMemberLogin::class);
+        return $login->loginByFormInput(array_get($credentials, 'login_id'));
+    }
 }
